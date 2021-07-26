@@ -7,6 +7,7 @@ namespace Locations.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -32,5 +33,10 @@ namespace Locations.Models
 
         [Required]
         public DateTime LastUpdated { get; set; }
+
+        [ForeignKey(nameof(Location))]
+        public string LocationId { get; set; }
+
+        public Location Location { get; set; }
     }
 }
