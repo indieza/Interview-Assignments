@@ -9,6 +9,9 @@ namespace Locations
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Locations.Services.CreateLocation;
+    using Locations.Services.PatchLocation;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +38,9 @@ namespace Locations
 
             services.AddDbContext<LocationsDbContext>(options =>
                 options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<ICreateLocationService, CreateLocationService>();
+            services.AddTransient<IPatchLocationService, PatchLocationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
