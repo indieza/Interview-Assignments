@@ -10,8 +10,12 @@ namespace Locations.Controllers
     using System.Threading.Tasks;
 
     using Locations.Services.CreateLocation;
+    using Locations.Services.GetLocation;
     using Locations.Services.PatchLocation;
+    using Locations.ViewModels.ApplicationMessages;
     using Locations.ViewModels.CreateLocation.InputModels;
+    using Locations.ViewModels.Errors;
+    using Locations.ViewModels.GetLocation.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -22,15 +26,20 @@ namespace Locations.Controllers
     {
         private readonly ICreateLocationService createLocationService;
         private readonly IPatchLocationService patchLocationService;
+        private readonly IGetLocationService getLocationService;
 
-        public LocationsController(ICreateLocationService createLocationService, IPatchLocationService patchLocationService)
+        public LocationsController(
+            ICreateLocationService createLocationService,
+            IPatchLocationService patchLocationService,
+            IGetLocationService getLocationService)
         {
             this.createLocationService = createLocationService;
             this.patchLocationService = patchLocationService;
+            this.getLocationService = getLocationService;
         }
 
         [HttpPost]
-        public async Task<string> Create(CreateLocationInputModel model)
+        public async Task<IActionResult> Post(CreateLocationInputModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -38,21 +47,21 @@ namespace Locations.Controllers
 
                 if (!result.Item1)
                 {
-                    return "Inner developed error, contact with support!";
+                    return new JsonResult(new ErrorMessageViewModel { Message = "Inner developed error, contact with support!" });
                 }
                 else
                 {
-                    return result.Item2;
+                    return new JsonResult(new SuccessfullMesageViewModel { Message = result.Item2 });
                 }
             }
             else
             {
-                return "Invalid input model!";
+                return new JsonResult(new ErrorMessageViewModel { Message = "Invalid input model!" });
             }
         }
 
         [HttpPatch]
-        public async Task<string> Patch(string locationId)
+        public async Task<IActionResult> Patch(string locationId)
         {
             if (!string.IsNullOrEmpty(locationId) && !string.IsNullOrWhiteSpace(locationId))
             {
@@ -60,16 +69,39 @@ namespace Locations.Controllers
 
                 if (!result.Item1)
                 {
-                    return result.Item2;
+                    return new JsonResult(new ErrorMessageViewModel { Message = result.Item2 });
                 }
                 else
                 {
-                    return result.Item2;
+                    return new JsonResult(new SuccessfullMesageViewModel { Message = result.Item2 });
                 }
             }
             else
             {
-                return "Invalid input model!";
+                return new JsonResult(new ErrorMessageViewModel { Message = "Invalid input model!" });
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/locations/{locationId?}")]
+        public async Task<IActionResult> Get(string locationId)
+        {
+            if (!string.IsNullOrEmpty(locationId) && !string.IsNullOrWhiteSpace(locationId))
+            {
+                Tuple<bool, GetLocationViewModel> result = await this.getLocationService.GetLocation(locationId);
+
+                if (!result.Item1)
+                {
+                    return new JsonResult(new ErrorMessageViewModel { Message = $"There is no Location with ID: {locationId}!" });
+                }
+                else
+                {
+                    return new JsonResult(result.Item2);
+                }
+            }
+            else
+            {
+                return new JsonResult(new ErrorMessageViewModel { Message = "Invalid input model!" });
             }
         }
     }

@@ -10,6 +10,7 @@ namespace Locations
     using System.Threading.Tasks;
 
     using Locations.Services.CreateLocation;
+    using Locations.Services.GetLocation;
     using Locations.Services.PatchLocation;
 
     using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,7 @@ namespace Locations
 
             services.AddTransient<ICreateLocationService, CreateLocationService>();
             services.AddTransient<IPatchLocationService, PatchLocationService>();
+            services.AddTransient<IGetLocationService, GetLocationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
