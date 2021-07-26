@@ -21,8 +21,9 @@ namespace Locations.Migrations
 
             modelBuilder.Entity("Locations.Models.ChargePoint", b =>
                 {
-                    b.Property<string>("CharegPointId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ChargePointId")
+                        .HasMaxLength(39)
+                        .HasColumnType("nvarchar(39)");
 
                     b.Property<string>("FloorLevel")
                         .HasMaxLength(4)
@@ -37,7 +38,7 @@ namespace Locations.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("CharegPointId");
+                    b.HasKey("ChargePointId");
 
                     b.HasIndex("LocationId");
 

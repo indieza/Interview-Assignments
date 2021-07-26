@@ -32,7 +32,7 @@ namespace Locations
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Location>().HasKey(x => x.LocationId);
-            builder.Entity<ChargePoint>().HasKey(x => x.CharegPointId);
+            builder.Entity<ChargePoint>().HasKey(x => x.ChargePointId);
 
             builder.Entity<Location>().HasMany(x => x.ChargePoints)
                 .WithOne(x => x.Location)

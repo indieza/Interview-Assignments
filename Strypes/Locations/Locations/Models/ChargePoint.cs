@@ -17,12 +17,13 @@ namespace Locations.Models
     {
         public ChargePoint()
         {
-            this.CharegPointId = Guid.NewGuid().ToString();
+            this.ChargePointId = Guid.NewGuid().ToString();
         }
 
         [Required]
         [Key]
-        public string CharegPointId { get; set; }
+        [MaxLength(39)]
+        public string ChargePointId { get; set; }
 
         [Required]
         [EnumDataType(typeof(ChargePointStatus))]

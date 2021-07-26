@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locations.Migrations
 {
     [DbContext(typeof(LocationsDbContext))]
-    [Migration("20210726120607_InitialCreate")]
+    [Migration("20210726121334_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,8 +23,9 @@ namespace Locations.Migrations
 
             modelBuilder.Entity("Locations.Models.ChargePoint", b =>
                 {
-                    b.Property<string>("CharegPointId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ChargePointId")
+                        .HasMaxLength(39)
+                        .HasColumnType("nvarchar(39)");
 
                     b.Property<string>("FloorLevel")
                         .HasMaxLength(4)
@@ -39,7 +40,7 @@ namespace Locations.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("CharegPointId");
+                    b.HasKey("ChargePointId");
 
                     b.HasIndex("LocationId");
 
