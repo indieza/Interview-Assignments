@@ -4,16 +4,15 @@
 
 namespace Locations.ViewModels.PutChargePoint.InputModels
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     using Locations.Models.Enums;
 
     public class ChargePointInputModel
     {
+        [MaxLength(39)]
+        public string ChargePointId { get; set; }
+
         [Required]
         [EnumDataType(typeof(ChargePointStatus))]
         public ChargePointStatus Status { get; set; }
@@ -21,9 +20,9 @@ namespace Locations.ViewModels.PutChargePoint.InputModels
         [MaxLength(4)]
         public string FloorLevel { get; set; }
 
-        [Required]
-        public DateTime LastUpdated { get; set; }
-
         public string LocationId { get; set; }
+
+        // [Required]
+        // public DateTime LastUpdated { get; set; }
     }
 }

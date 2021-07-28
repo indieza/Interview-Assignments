@@ -4,11 +4,6 @@
 
 namespace Locations.ViewModels.ApplicationMessages
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     public class SuccessfullMesageViewModel
     {
         public string Message { get; set; }

@@ -5,8 +5,6 @@
 namespace Locations.Services.CreateLocation
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Locations.ViewModels.CreateLocation.InputModels;

@@ -5,8 +5,6 @@
 namespace Locations.Services.PatchLocation
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Locations.Models.Enums;

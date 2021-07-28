@@ -4,11 +4,6 @@
 
 namespace Locations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     using Locations.Models;
 
     using Microsoft.EntityFrameworkCore;

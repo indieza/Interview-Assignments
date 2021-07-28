@@ -5,9 +5,6 @@
 namespace Locations.ViewModels.GetLocation.ViewModels
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     using Locations.Models.Enums;
 

@@ -5,8 +5,6 @@
 namespace Locations.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Locations.Services.CreateLocation;
@@ -20,7 +18,6 @@ namespace Locations.Controllers
     using Locations.ViewModels.PutChargePoint.InputModels;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
 
     [ApiController]
     [Route("api/locations")]
@@ -29,15 +26,18 @@ namespace Locations.Controllers
         private readonly ICreateLocationService createLocationService;
         private readonly IPatchLocationService patchLocationService;
         private readonly IGetLocationService getLocationService;
+        private readonly IPutChargePointService putChargePointService;
 
         public LocationsController(
             ICreateLocationService createLocationService,
             IPatchLocationService patchLocationService,
-            IGetLocationService getLocationService)
+            IGetLocationService getLocationService,
+            IPutChargePointService putChargePointService)
         {
             this.createLocationService = createLocationService;
             this.patchLocationService = patchLocationService;
             this.getLocationService = getLocationService;
+            this.putChargePointService = putChargePointService;
         }
 
         [HttpPost]
@@ -114,22 +114,21 @@ namespace Locations.Controllers
         {
             if (!string.IsNullOrEmpty(locationId) && !string.IsNullOrWhiteSpace(locationId) && this.ModelState.IsValid)
             {
-                //Tuple<bool, string> result = await this.putChargePointService.PutChargePoint(locationId, model);
+                Tuple<bool, string> result = await this.putChargePointService.PutChargePoint(locationId, model);
 
-                //if (!result.Item1)
-                //{
-                //    return new JsonResult(new ErrorMessageViewModel { Message = result.Item2 });
-                //}
-                //else
-                //{
-                //    return new JsonResult(new SuccessfullMesageViewModel { Message = result.Item2 });
-                //}
+                if (!result.Item1)
+                {
+                    return new JsonResult(new ErrorMessageViewModel { Message = result.Item2 });
+                }
+                else
+                {
+                    return new JsonResult(new SuccessfullMesageViewModel { Message = result.Item2 });
+                }
             }
             else
             {
                 return new JsonResult(new ErrorMessageViewModel { Message = "Invalid input model!" });
             }
-            return null;
         }
     }
 }
