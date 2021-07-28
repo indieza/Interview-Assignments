@@ -36,12 +36,14 @@ namespace Locations
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc();
 
             services.AddDbContext<LocationsDbContext>(options =>
                 options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<ICreateLocationService, CreateLocationService>();
             services.AddTransient<IPatchLocationService, PatchLocationService>();
+            services.AddTransient<IGetLocationService, GetLocationService>();
             services.AddTransient<IGetLocationService, GetLocationService>();
         }
 

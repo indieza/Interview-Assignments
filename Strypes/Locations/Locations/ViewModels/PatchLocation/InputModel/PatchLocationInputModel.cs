@@ -15,7 +15,7 @@ namespace Locations.ViewModels.PatchLocation.InputModel
     public class PatchLocationInputModel
     {
         [EnumDataType(typeof(LocationType))]
-        public LocationType Type { get; set; }
+        public LocationType? Type { get; set; }
 
         [MaxLength(255)]
         public string Name { get; set; }
@@ -32,6 +32,6 @@ namespace Locations.ViewModels.PatchLocation.InputModel
         [MaxLength(45)]
         public string Country { get; set; }
 
-        public DateTime LastUpdated { get; set; }
+        // public DateTime LastUpdated { get; set; }
     }
 }

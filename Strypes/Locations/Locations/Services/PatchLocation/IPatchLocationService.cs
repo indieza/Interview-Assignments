@@ -9,8 +9,10 @@ namespace Locations.Services.PatchLocation
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Locations.ViewModels.PatchLocation.InputModel;
+
     public interface IPatchLocationService
     {
-        Task<Tuple<bool, string>> PatchLocation(string locationId);
+        Task<Tuple<bool, string>> PatchLocation(string locationId, PatchLocationInputModel model);
     }
 }

@@ -16,6 +16,7 @@ namespace Locations.Controllers
     using Locations.ViewModels.ApplicationMessages;
     using Locations.ViewModels.CreateLocation.InputModels;
     using Locations.ViewModels.GetLocation.ViewModels;
+    using Locations.ViewModels.PatchLocation.InputModel;
     using Locations.ViewModels.PutChargePoint.InputModels;
 
     using Microsoft.AspNetCore.Mvc;
@@ -28,18 +29,15 @@ namespace Locations.Controllers
         private readonly ICreateLocationService createLocationService;
         private readonly IPatchLocationService patchLocationService;
         private readonly IGetLocationService getLocationService;
-        private readonly IPutChargePointService putChargePointService;
 
         public LocationsController(
             ICreateLocationService createLocationService,
             IPatchLocationService patchLocationService,
-            IGetLocationService getLocationService,
-            IPutChargePointService putChargePointService)
+            IGetLocationService getLocationService)
         {
             this.createLocationService = createLocationService;
             this.patchLocationService = patchLocationService;
             this.getLocationService = getLocationService;
-            this.putChargePointService = putChargePointService;
         }
 
         [HttpPost]
@@ -65,11 +63,12 @@ namespace Locations.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> Patch(string locationId)
+        [Route("/api/locations/{locationId?}")]
+        public async Task<IActionResult> Patch(string locationId, PatchLocationInputModel model)
         {
-            if (!string.IsNullOrEmpty(locationId) && !string.IsNullOrWhiteSpace(locationId))
+            if (!string.IsNullOrEmpty(locationId) && !string.IsNullOrWhiteSpace(locationId) && this.ModelState.IsValid)
             {
-                Tuple<bool, string> result = await this.patchLocationService.PatchLocation(locationId);
+                Tuple<bool, string> result = await this.patchLocationService.PatchLocation(locationId, model);
 
                 if (!result.Item1)
                 {
@@ -110,25 +109,27 @@ namespace Locations.Controllers
         }
 
         [HttpPut]
+        [Route("/api/locations/{locationId?}")]
         public async Task<IActionResult> Put(string locationId, PutChargePointInputModel model)
         {
             if (!string.IsNullOrEmpty(locationId) && !string.IsNullOrWhiteSpace(locationId) && this.ModelState.IsValid)
             {
-                Tuple<bool, string> result = await this.putChargePointService.PutChargePoint(locationId, model);
+                //Tuple<bool, string> result = await this.putChargePointService.PutChargePoint(locationId, model);
 
-                if (!result.Item1)
-                {
-                    return new JsonResult(new ErrorMessageViewModel { Message = result.Item2 });
-                }
-                else
-                {
-                    return new JsonResult(new SuccessfullMesageViewModel { Message = result.Item2 });
-                }
+                //if (!result.Item1)
+                //{
+                //    return new JsonResult(new ErrorMessageViewModel { Message = result.Item2 });
+                //}
+                //else
+                //{
+                //    return new JsonResult(new SuccessfullMesageViewModel { Message = result.Item2 });
+                //}
             }
             else
             {
                 return new JsonResult(new ErrorMessageViewModel { Message = "Invalid input model!" });
             }
+            return null;
         }
     }
 }
