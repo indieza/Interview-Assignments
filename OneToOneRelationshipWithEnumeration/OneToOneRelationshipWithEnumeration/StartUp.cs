@@ -4,6 +4,8 @@
 
 namespace OneToOneRelationshipWithEnumeration
 {
+    using Microsoft.EntityFrameworkCore;
+
     using OneToOneRelationshipWithEnumeration.Data;
     using OneToOneRelationshipWithEnumeration.Models;
 
@@ -12,23 +14,32 @@ namespace OneToOneRelationshipWithEnumeration
         private static void Main()
         {
             var db = new MyDbContext();
-            var userAction = new UserAction();
+
+            var actionId = Guid.NewGuid().ToString();
+            var baseActionId = Guid.NewGuid().ToString();
 
             db.UserActions.Add(new UserAction
             {
-                Id = "812a5d77-f622-453a-9f7f-2be4b897a00e",
-                BaseUserActionId = "406a325d-fcc9-4e42-9aa2-92f376aef80a",
+                Id = actionId,
+                BaseUserActionId = baseActionId,
                 BaseUserAction = new FollowUserAction
                 {
-                    Id = "406a325d-fcc9-4e42-9aa2-92f376aef80a",
-                    UserActionId = "812a5d77-f622-453a-9f7f-2be4b897a00e",
+                    Id = baseActionId,
+                    UserActionId = actionId,
                     Comment = "ASDF",
                     FollowMessage = "Follow ASDF",
                 },
-                Description = "FDSA"
+                Description = "FDSA",
             });
 
             db.SaveChanges();
+
+            var item = db.UserActions
+                .Include(x => x.BaseUserAction)
+                .AsSingleQuery()
+                .Where(x => x.BaseUserAction.ActionType == ActionType.Follow)
+                .ToList();
+            Console.WriteLine(string.Join(", ", item.Select(x => x.Id).ToList()));
         }
     }
 }
