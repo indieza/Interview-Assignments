@@ -26,6 +26,8 @@ namespace OneToOneRelationshipWithEnumeration.Data
 
         public DbSet<UnfollowUserAction> UnfollowUserActions { get; set; }
 
+        public DbSet<BaseUserAction> BaseUserActions { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Integrated Security=True;Server=DESKTOP-OL15CV8;Database=OneToOne");
@@ -42,7 +44,7 @@ namespace OneToOneRelationshipWithEnumeration.Data
                 .HasOne(x => x.BaseUserAction)
                 .WithOne(x => x.UserAction)
                 .HasForeignKey<UserAction>(x => x.BaseUserActionId)
-                .IsRequired(false);
+                .IsRequired(true);
         }
     }
 }

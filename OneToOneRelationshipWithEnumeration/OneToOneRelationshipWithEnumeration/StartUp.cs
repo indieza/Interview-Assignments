@@ -24,7 +24,6 @@ namespace OneToOneRelationshipWithEnumeration
                 BaseUserActionId = baseActionId,
                 BaseUserAction = new FollowUserAction
                 {
-                    Id = baseActionId,
                     UserActionId = actionId,
                     Comment = "ASDF",
                     FollowMessage = "Follow ASDF",

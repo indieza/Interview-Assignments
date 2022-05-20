@@ -18,12 +18,9 @@ namespace OneToOneRelationshipWithEnumeration.Models
         {
         }
 
-        [Key]
-        [Required]
-        public string Id { get; set; }
-
         public ActionType ActionType { get; set; }
 
+        [Key]
         [Required]
         [ForeignKey(nameof(UserAction))]
         public string UserActionId { get; set; }

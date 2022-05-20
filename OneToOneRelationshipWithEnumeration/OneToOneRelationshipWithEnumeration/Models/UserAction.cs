@@ -22,8 +22,9 @@ namespace OneToOneRelationshipWithEnumeration.Models
         [Required]
         public string Id { get; set; }
 
+        [Required]
         [ForeignKey(nameof(BaseUserAction))]
-        public string? BaseUserActionId { get; set; }
+        public string BaseUserActionId { get; set; }
 
         public BaseUserAction BaseUserAction { get; set; }
 
