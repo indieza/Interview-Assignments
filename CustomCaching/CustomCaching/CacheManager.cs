@@ -12,116 +12,92 @@ namespace CustomCaching
         private static readonly Dictionary<string, object> Cache = new Dictionary<string, object>();
 
         private CacheManager()
-
         {
         }
 
-        public static Boolean Add(string key, object value)
-
+        public static bool Add(string key, object value)
         {
-            bool bResult = false;
+            bool result = false;
 
             lock (Cache)
-
             {
                 try
-
                 {
                     Cache.Add(key.Trim(), value);
-
-                    bResult = true;
+                    result = true;
                 }
                 catch (ArgumentNullException argumentNullException)
-
                 {
                     throw argumentNullException;
                 }
                 catch (ArgumentException argumentException)
-
                 {
                     throw argumentException;
                 }
             }
 
-            return bResult;
+            return result;
         }
 
-        public static Boolean Remove(string key)
-
+        public static bool Remove(string key)
         {
-            Boolean Result = false;
+            bool result = false;
 
             lock (Cache)
-
             {
                 try
-
                 {
-                    if (Cache.ContainsKey(key.Trim()))
-
+                    if (!Cache.Remove(key.Trim()))
                     {
-                        Cache.Remove(key.Trim());
-
-                        Result = true;
+                        result = false;
                     }
                     else
-
                     {
-                        Result = false;
+                        result = true;
                     }
                 }
                 catch (ArgumentNullException argumentNullException)
-
                 {
                     throw argumentNullException;
                 }
             }
 
-            return Result;
+            return result;
         }
 
-        public static object Get(string key)
-
+        public static object? Get(string key)
         {
-            object ReturnObject = null;
-
+            object? returnObject;
             try
-
             {
-                Cache.TryGetValue(key.Trim(), out ReturnObject);
+                Cache.TryGetValue(key.Trim(), out returnObject);
             }
             catch (ArgumentNullException argumentNullException)
-
             {
                 throw argumentNullException;
             }
             catch (KeyNotFoundException keyNotFoundException)
-
             {
                 throw keyNotFoundException;
             }
 
-            return ReturnObject;
+            return returnObject;
         }
 
-        public static Boolean IsExists(string key)
-
+        public static bool IsExists(string key)
         {
             return Cache.ContainsKey(key.Trim());
         }
 
         public static void Flush()
-
         {
             try
-
             {
                 Cache.Clear();
             }
-            catch (Exception excp)
-
+            catch (Exception exception)
             {
-                throw excp;
+                throw exception;
             }
         }
     }
