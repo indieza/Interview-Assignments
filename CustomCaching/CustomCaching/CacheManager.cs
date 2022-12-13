@@ -100,5 +100,10 @@ namespace CustomCaching
                 throw exception;
             }
         }
+
+        public static int Count()
+        {
+            return Cache.Count();
+        }
     }
 }
