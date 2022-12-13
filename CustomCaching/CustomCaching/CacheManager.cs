@@ -26,9 +26,9 @@ namespace CustomCaching
                     Cache.Add(key.Trim(), value);
                     result = true;
                 }
-                catch (ArgumentNullException argumentNullException)
+                catch (NullReferenceException nullReferenceException)
                 {
-                    throw argumentNullException;
+                    throw nullReferenceException;
                 }
                 catch (ArgumentException argumentException)
                 {

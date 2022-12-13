@@ -1,3 +1,7 @@
+// <copyright file="CacheManagerTests.cs" company="Custom Caching Tests">
+// Copyright (c) Custom Caching Tests. All rights reserved.
+// </copyright>
+
 namespace CustomCaching.Tests
 {
     public class CacheManagerTests
@@ -5,7 +9,15 @@ namespace CustomCaching.Tests
         [Fact]
         public void AddNewElementTest()
         {
-            CacheManager.Add("Item 1", "Some value here");
+            var result = CacheManager.Add("Item 1", "Some value here");
+            Assert.Equal(1, CacheManager.Count());
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void AddNewNullElementTest()
+        {
+            Assert.Throws<NullReferenceException>(() => CacheManager.Add(null, "Null element"));
             Assert.Equal(1, CacheManager.Count());
         }
 
@@ -14,6 +26,7 @@ namespace CustomCaching.Tests
         {
             CacheManager.Add("Item 2", "Some value here");
             Assert.Throws<ArgumentException>(() => CacheManager.Add("Item 2", "Some value here"));
+            Assert.Equal(1, CacheManager.Count());
         }
 
         [Fact]
