@@ -25,6 +25,13 @@
 
             Console.Write("New List: ");
             list.PrintList(newList.Head);
+
+            Console.WriteLine($"Delete by index: ");
+            int index = int.Parse(Console.ReadLine());
+            SingleLinkedList indexList = newList.DeleteByIndex(index, newList);
+
+            Console.WriteLine($"Index delete list: ");
+            list.PrintList(indexList.Head);
         }
     }
 }

@@ -31,6 +31,26 @@
             Console.WriteLine();
         }
 
+        public SingleLinkedList DeleteByIndex(int index, SingleLinkedList list)
+        {
+            var currentIndex = 0;
+            Node currentNode = list.Head;
+            SingleLinkedList result = new SingleLinkedList();
+
+            while (currentNode != null)
+            {
+                if (currentIndex != index)
+                {
+                    result.InsertFront(result, currentNode.Data);
+                }
+
+                currentNode = currentNode.Next;
+                currentIndex++;
+            }
+
+            return result;
+        }
+
         public SingleLinkedList Delete(int number, SingleLinkedList list)
         {
             Node previousNode = null;
