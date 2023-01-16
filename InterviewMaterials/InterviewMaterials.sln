@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethod", "ExtensionMethod\ExtensionMethod.csproj", "{B210DA83-F6C7-45C8-96C9-8A55D1DFC246}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignPatterns", "DesignPatterns", "{4F396C43-B0BF-4BF5-B9AF-750D076DAC8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B210DA83-F6C7-45C8-96C9-8A55D1DFC246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B210DA83-F6C7-45C8-96C9-8A55D1DFC246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B210DA83-F6C7-45C8-96C9-8A55D1DFC246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B210DA83-F6C7-45C8-96C9-8A55D1DFC246}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0ED8C927-D24F-4E59-9F16-62149BAC6042}
+	EndGlobalSection
+EndGlobal
