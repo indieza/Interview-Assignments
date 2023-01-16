@@ -1,4 +1,4 @@
-﻿namespace ExtensionMethod
+﻿namespace ExtensionMethod.Sample
 {
     public sealed class SealedClass
     {
@@ -11,9 +11,6 @@
             this.b = b;
         }
 
-        public int Sum()
-        {
-            return this.a + this.b;
-        }
+        public int Sum() => a + b;
     }
 }
