@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtensionMethod", "Extensio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignPatterns", "DesignPatterns", "{4F396C43-B0BF-4BF5-B9AF-750D076DAC8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton\Singleton.csproj", "{ADF660D4-7C5B-4311-8045-85E56F648AE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Singleton", "Singleton\Singleton.csproj", "{ADF660D4-7C5B-4311-8045-85E56F648AE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Creational", "Creational", "{8E7791BF-9939-4277-BFB4-0FE0C56E9102}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,7 +30,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{ADF660D4-7C5B-4311-8045-85E56F648AE5} = {4F396C43-B0BF-4BF5-B9AF-750D076DAC8F}
+		{ADF660D4-7C5B-4311-8045-85E56F648AE5} = {8E7791BF-9939-4277-BFB4-0FE0C56E9102}
+		{8E7791BF-9939-4277-BFB4-0FE0C56E9102} = {4F396C43-B0BF-4BF5-B9AF-750D076DAC8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0ED8C927-D24F-4E59-9F16-62149BAC6042}
