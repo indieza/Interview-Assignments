@@ -4,20 +4,22 @@
     {
         private static void Main()
         {
-            Singleton? s1 = Singleton.GetInstance();
-            Singleton? s2 = Singleton.GetInstance();
+            LoadBalancer b1 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b2 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b3 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b4 = LoadBalancer.GetLoadBalancer();
 
-            if (s1 == s2)
+            if (b1 == b2 && b2 == b3 && b3 == b4)
             {
-                Console.WriteLine("Singleton works, both variables contain the same instance.");
-            }
-            else
-            {
-                Console.WriteLine("Singleton failed, variables contain different instances.");
+                Console.WriteLine("Same instance\n");
             }
 
-            Console.WriteLine(s1?.Sum());
-            Console.WriteLine(s2?.Sum());
+            LoadBalancer balancer = LoadBalancer.GetLoadBalancer();
+            for (int i = 0; i < 15; i++)
+            {
+                string server = balancer.Server;
+                Console.WriteLine($"Dispatch Request to: {server}");
+            }
         }
     }
 }
