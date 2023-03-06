@@ -2,7 +2,7 @@
 
 namespace Strategy
 {
-    public class Program
+    public class StartUp
     {
         private static void Main()
         {
